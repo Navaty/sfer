@@ -1,0 +1,47 @@
+<%# javascript_include_tag Ckeditor.cdn_url %>
+<%= form_with(model: post, local: true, html: { multipart: true }) do |form| %>
+  <% if post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.file_field :image, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :body %>
+    <%= form.cktext_area :body, class: "form-control"%>
+  </div>
+
+  <div class="field">
+    <%= form.label :m_title %>
+    <%= form.text_field :m_title, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :m_desc %>
+    <%= form.text_area :m_desc, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :m_keys %>
+    <%= form.text_area :m_keys, class: "form-control" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

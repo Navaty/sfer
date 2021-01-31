@@ -1,0 +1,24 @@
+
+<p id="notice"><%= notice %></p>
+
+ <div class="row offer_bloks">
+    <% @posts.each do |post| %>
+      <div class="col-md-4 col-sm-12">
+        <a href=<%= post_path(post) %>>
+            <%= if post.image? 
+              image_tag post.image_url, class: "offers_elem"
+              end %>
+            <div class="offers_elem_text">
+             <%= post.title %>
+            </div>
+        </a>
+        
+      </div>
+    <% end %>
+  </div>
+
+
+
+
+
+<%= link_to 'New Post', new_post_path %>

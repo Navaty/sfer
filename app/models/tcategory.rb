@@ -1,0 +1,2 @@
+class Tcategory < ApplicationRecord
+end

@@ -1,0 +1,49 @@
+<%= form_with(model: statement, local: true) do |form| %>
+  <% if statement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(statement.errors.count, "error") %> prohibited this statement from being saved:</h2>
+
+      <ul>
+      <% statement.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :name, "Имя" %>
+    <%= form.text_field :name, id: :statement_name, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :soname, "Фамилия" %>
+    <%= form.text_field :soname, id: :statement_soname, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :father_name, "Отчество" %>
+    <%= form.text_field :father_name, id: :statement_father_name, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :statement_email, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :place, "Место работы" %>
+    <%= form.text_field :place, id: :statement_place, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :position, "Должность" %>
+    <%= form.text_field :position, id: :statement_position, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.submit "Отправить", class:"btn btn-primary" %>
+    <%= link_to "Вернуться к списку тестов", tests_path(), class: "btn btn-warning active" %> 
+
+  </div>
+<% end %>

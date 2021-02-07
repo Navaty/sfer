@@ -1,0 +1,44 @@
+	<div class="row mt-3 justify-content-center">
+			<div class="col-10 py-2 bg-info text-center text-white">
+
+			<h3>К сожалению, тест не пройден</h3>
+			<span>Результат <%= @score %> из <%= @total %> </span>
+		</div>
+	</div>
+	<% @wrong_questions.each_with_index do |q,index| %>
+	<div class="row justify-content-center mb-3">
+		<div class="col-10 py-2 border border-info rounded">
+				<div class="form-group">
+				 	<label style="font-size:1.5em" ><%= q.body %></label> 
+				 </div>
+
+				<div class="form-group">
+			 			<% q.answers.each do |a| %>
+			 				<% if a.isCorrect%>
+
+							    <div>
+							    	<span class="correct-answer" style="color: green">✓</span> <%=a.body %>
+							    </div>
+
+							 <% elsif a.id == @wrong_answers[index] %>
+
+							 	<div>
+							    	<span class="wrong-answer" style="color: red">X</span> <%=a.body %> 
+							    </div>
+
+							 <% else %>
+							 	<div>
+							    	<span class="answer"></span> <%=a.body %> 
+							    </div>
+						    <% end %>
+			 			<% end %>
+	 			</div>
+		</div>
+	</div>
+	<% end %>
+	<div class="text-center">
+		<%= link_to "Пройти тест заного", new_test_survey_url(test_id: @test_id), class: "btn btn-primary active" %> 
+		<%= link_to "Вернуться к списку тестов", new_test_survey_url(test_id: @test_id), class: "btn btn-warning active" %> 
+	</div>
+
+

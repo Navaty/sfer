@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @tcategory.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @tcategory.description %>
+</p>
+
+<%= link_to 'Edit', edit_tcategory_path(@tcategory) %> |
+<%= link_to 'Back', tcategories_path %>

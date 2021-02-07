@@ -1,5 +1,11 @@
 class PagesController < ApplicationController
-	def wellcome
+	def welcome
 		@tcategory = Tcategory.includes(:tests)
+	end
+
+	def contact
+	end
+
+	def policy
 	end
 end

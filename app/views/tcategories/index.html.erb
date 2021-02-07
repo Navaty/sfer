@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="text-center">Категории</h1>
+<div class="col-md-3 d-block">
+<%= link_to 'Новая категория', new_tcategory_path,  class:"form-control btn-primary" %>
+</div>
+ <br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Название</th>
+      <th scope="col">Описание</th>
+    </tr>
+  </thead>
+
+
+  <tbody>
+ <% @tcategories.each do |tcategory| %>
+      <tr>
+        <td><%= tcategory.title %></td>
+        <td><%= tcategory.description %></td>
+        <td><%= link_to 'Show', tcategory %></td>
+        <td><%= link_to 'Edit', edit_tcategory_path(tcategory) %></td>
+        <td><%= link_to 'Destroy', tcategory, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+

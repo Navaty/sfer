@@ -18,27 +18,19 @@ before_action :set_test, only: [:show, :edit, :update, :destroy]
   def create
     @test = Test.new(test_params)
 
-    respond_to do |format|
       if @test.save
-        format.html { redirect_to @test, notice: 'Test was successfully created.' }
-        format.json { render :show, status: :created, location: @test }
+        redirect_to @test, notice: 'Test was successfully created.'
       else
-        format.html { render :new }
-        format.json { render json: @test.errors, status: :unprocessable_entity }
+        render :new 
       end
-    end
   end
 
   def update
-    respond_to do |format|
       if @test.update(test_params)
-        format.html { redirect_to @test, notice: 'Test was successfully updated.' }
-        format.json { render :show, status: :ok, location: @test }
+        redirect_to @test, notice: 'Test was successfully updated.' 
       else
-        format.html { render :edit }
-        format.json { render json: @test.errors, status: :unprocessable_entity }
+        render :edit 
       end
-    end
   end
 
   def destroy
@@ -55,6 +47,7 @@ before_action :set_test, only: [:show, :edit, :update, :destroy]
     end
 
     def test_params
-      params.require(:test).permit(:title, :description, :active, :tcategory_id, :certificate, questions_attributes: [:body, :_destroy, :id, answers_attributes: [:body, :_destroy, :id, :correct]])
+      params.require(:test).permit(:title, :description, :active, :tcategory_id, :certificate, questions_attributes: 
+        [:body, :_destroy, :id, answers_attributes: [:body, :_destroy, :id, :isCorrect]])
     end
 end

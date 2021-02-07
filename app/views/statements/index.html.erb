@@ -1,0 +1,78 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Заявки</h1>
+
+<div class="container search">
+    <%= form_tag statements_path, :method => 'get', :id => "statements_search", class: "form-group search-form" do %>
+        <%# hidden_field_tag :order, params[:order], :id => "place_order_field", class: "sort-field" %>
+        <div class="form-row">
+          <div class="col-md-12 mb-2">
+                <%= text_field_tag "search[ticket_id]", (params[:search][:ticket_id] if params[:search].present?), class: "form-control", placeholder: "ID" %>
+            </div> 
+            <div class="col-md-6 mb-2">
+                <%= text_field_tag "search[email]", (params[:search][:email] if params[:search].present?), class: "form-control", placeholder: "Email" %>
+            </div> 
+            <div class="col-md-6 mb-2">
+                <%= text_field_tag "search[fio]", (params[:search][:fio] if params[:search].present?),  class:"form-control", placeholder: "Fio" %>
+            </div> 
+
+            <div class="col-md-3 mb-2 d-block ">
+
+
+                  <input class="form-control" type="text" name="search[date[start]]" value= "<%= params[:search][:date][:start] if params[:search].present? %>" id="btdate" placeholder="Дата начала" onfocus="(this.type='date');(this.click())" onblur="(this.type='text')"> 
+                                
+            </div>
+          <div class="col-md-3 mb-2 d-block">
+            <input class="form-control" type="text" name="search[date[end]]" id="btdate" placeholder="Конец даты" onfocus="(this.type='date');(this.click())" onblur="(this.type='text')" value= "<%= params[:search][:date][:end] if params[:search].present? %>"> 
+           </div>
+            <div class="col-md-3 d-block form-check">
+                <span class="form-control">
+                <%= check_box_tag "search[paid]", true, (params[:search][:paid] if params[:search].present?), class: " form-check-input ", style: "margin-left: 5px" %>
+                <%= label_tag :paid, 'Оплаченные', class: "form-check-label", style: "margin-left: 25px" %>
+                </span>
+            </div>
+            <div class="col-md-3 d-block"> <%= submit_tag "Найти", class:"form-control btn-primary" %></div>
+          </div>
+      <% end %>
+</div>
+<%= form_tag statements_path do %>
+<div class="col-md-3">
+<%= submit_tag "Отправить уведомление", class: "form-control btn-info" %>
+</div> <br>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Отметить</th>
+      <th scope="col">Email</th>
+      <th scope="col">ФИО</th>
+      <th scope="col">Номер</th>
+      <th scope="col">Должность</th>
+      <th scope="col">Тест</th>
+      <th scope="col">Уведомлен</th>
+      <th scope="col">Оплачен</th>
+      <th colspan="3">Действия</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @statements.each do |statement| %>
+      <tr>
+        <td><%= check_box_tag "statement_ids[]", statement.id%></td>
+        <td><%= statement.email %></td>
+        <td><%= statement.fio %></td>
+        <td><%= statement.phone %></td>
+        <td><%= statement.position %></td>
+        <td><%= statement.test.title %></td>
+        <td><%= 'Да' if statement.notify %></td>
+        <td><%= 'Да' if statement.paid %></td>
+        <td><%= link_to 'Посмотреть', statement %></td>
+        <td><%= link_to 'Редактировать', edit_statement_path(statement) %></td>
+        <td><%= link_to 'Удалить', statement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+ 
+ <% end %>
+<%= link_to 'New Statement', new_statement_path %>

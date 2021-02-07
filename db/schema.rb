@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20210131190759) do
+ActiveRecord::Schema.define(version: 20210131194545) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,22 @@ ActiveRecord::Schema.define(version: 20210131190759) do
     t.index ["test_id"], name: "index_questions_on_test_id"
   end
 
+  create_table "statements", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "soname", null: false
+    t.string "father_name", null: false
+    t.string "email", null: false
+    t.string "position", null: false
+    t.string "place", null: false
+    t.bigint "test_id"
+    t.boolean "notified", default: false, null: false
+    t.boolean "paid", default: false, null: false
+    t.string "certificate"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["test_id"], name: "index_statements_on_test_id"
+  end
+
   create_table "tcategories", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
@@ -62,5 +78,6 @@ ActiveRecord::Schema.define(version: 20210131190759) do
 
   add_foreign_key "answers", "questions"
   add_foreign_key "questions", "tests"
+  add_foreign_key "statements", "tests"
   add_foreign_key "tests", "tcategories"
 end

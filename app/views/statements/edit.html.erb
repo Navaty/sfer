@@ -1,0 +1,60 @@
+<h1>Editing Statement</h1>
+<%= form_for(@statement, local: true) do |form| %>
+  <% if @statement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@statement.errors.count, "error") %> prohibited this statement from being saved:</h2>
+
+      <ul>
+      <% @statement.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :statement_email %>
+  </div>
+
+  <div class="field">
+    <%= form.label :fio, "ФИО" %>
+    <%= form.text_field :fio, id: :statement_fio %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone, "Телефон" %>
+    <%= form.text_field :phone, id: :statement_phone %>
+  </div>
+
+  <div class="field">
+    <%= form.label :position, "Должность" %>
+    <%= form.text_field :position, id: :statement_position %>
+  </div>
+
+    <div class="field">
+    <%= form.label :place, "Место работы" %>
+    <%= form.text_field :place, id: :statement_place %>
+  </div>
+
+    <div class="field">
+    <%= form.label :name, "Имя" %>
+    <%= form.text_field :name, id: :statement_name %>
+  </div>
+
+  <div class="field">
+    <%= form.check_box :notify %>
+    Уведомлен
+  </div>
+    <div class="field">
+    <%= form.check_box :paid %>
+    Оплачен
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%= link_to 'Show', @statement %> |
+<%= link_to 'Back', statements_path %>

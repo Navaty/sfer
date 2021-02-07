@@ -1,0 +1,43 @@
+<%= form_with(model: test, local: true) do |form| %>
+  <% if test.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(test.errors.count, "error") %> prohibited this test from being saved:</h2>
+
+      <ul>
+      <% test.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :test_title %>
+  </div>
+
+    <div class="field">
+       <%= form.label :title, "Шаблон сертификата" %>
+      <%= form.file_field :certificate %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :test_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :tcategory_id %>
+    <%= form.text_field :tcategory_id, id: :test_tcategory_id %>
+  </div>
+
+  <%= form.fields_for :questions do |builder| %>
+    <h2>Вопрос</h2>
+    <%= render 'question_fields', f: builder %>
+  <% end %>
+  <%= link_to_add_fields "Добавить вопрос", form, :questions %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

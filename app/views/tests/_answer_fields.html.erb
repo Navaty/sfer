@@ -1,0 +1,12 @@
+<fieldset>
+    <%= f.text_field :body, class:"form-control", placeholder: "Адрес" %>
+   <br>
+    <%= f.check_box :isCorrect %>
+    Правильный ответ
+<br>
+    <%= f.check_box :_destroy %>
+    Удалить ответ
+
+    <%# link_to "Удалить адрес", '#', class: "remove-address" %>
+    <%# <button type="button" class="remove-address">Удалить адрес</button> %>
+</fieldset>

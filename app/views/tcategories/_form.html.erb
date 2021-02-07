@@ -1,0 +1,27 @@
+<%= form_with(model: tcategory, local: true) do |form| %>
+  <% if tcategory.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(tcategory.errors.count, "error") %> prohibited this tcategory from being saved:</h2>
+
+      <ul>
+      <% tcategory.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :tcategory_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :tcategory_description %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

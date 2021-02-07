@@ -1,0 +1,43 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @statement.email %>
+</p>
+
+<p>
+  <strong>Fio:</strong>
+  <%= @statement.fio %>
+</p>
+
+<p>
+  <strong>Phone:</strong>
+  <%= @statement.phone %>
+</p>
+
+<p>
+  <strong>Position:</strong>
+  <%= @statement.position %>
+</p>
+
+<p>
+  <strong>Test:</strong>
+  <%= @statement.test %>
+</p>
+
+<% if @statement.certificate? %>
+
+<p>
+    ЕСТЬ СЕРТИФИКАТ <%= link_to "СКАЧАТЬ", @statement.certificate.url, target: "_blank" %>
+</p>
+ <% else %>
+
+ <p>
+  NOOOOOOOOOOOOO
+ </p>
+
+ <% end %>
+
+<%= link_to 'Edit', edit_statement_path(@statement) %> |
+<%= link_to 'Back', statements_path %> |
+<%= link_to 'Обновить сертификат', update_certificate_statement_path(@statement) %>

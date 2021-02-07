@@ -4,30 +4,33 @@
 			<%= image_tag 'example.jpg', class: "d-block mw-100", style: "max-height: 350px; height: auto;" %>
 		</div>
 		<div class="col-7 d-flex align-items-center">
-			<span style="font-size: 30px; text-align: center"><strong> Ахуеть, какой то текст непонятный пиздец можно же такое написать бляяяя</strong> Короче, купи сертификат, заебал. че как тупой. Вон пройди тесты ниже и докажи что ты не дурачек</span>
+			<span style="font-size: 28px; text-align: center"><strong> Проверьте свои знания:</strong> <br>
+				• Бесплатно, онлайн и без регистрации; <br>
+				• С дальнейшей возможностью заказать изготовление сертификата при успешном прохождении теста со скидкой ~35%; <br>
+				• Сертификат для Вашего портфолио будет готов в течение 24-х часов.</span>
 		</div>
 	</div>	
 </div>
-<div class="row d-flex justify-content-center">
- <h1> Пройди эти великолепные тесты, уеба</h1>
+<div class="row">
+ <h2 class="text-center"> Тестирование для педагогов, учителей, воспитателей, психологов, логопедов, дефектологов, методистов и других представителей сферы образования</h2> <!--Тестирование для педагогов, учителей, воспитателей, психологов, логопедов, дефектологов, методистов и других представителей сферы образования -->
 </div>
 <div class="container mt-3">
 	<% @tcategory.each do |category| %>
 	<br>
 		<div class="row">
-			<div class="col-5"> 
+			<div class="col-4"> 
 				<div class="row d-flex justify-content-center">
-				<%= image_tag 'shap.png', size: "110" %> 
+				<%= image_tag 'shap.png', size: "100" %> 
 				</div>
 				<div class="row d-flex justify-content-center">
 				<span style="font-size: 32px; font-weight: bold;"><%=category.title %></span>
 				</div>
 			</div> 
 			
-			<div class="col-7">
+			<div class="col-8">
 				<ul class="list-unstyled">
 					<% category.tests.each do |test| %>
-						<li> <%= image_tag 'logo2.jpg', size: "54x59" %> <%= link_to test.title, test_path(test) %></li>
+						<li> <%= image_tag 'logo2.jpg', size: "35x40" %> <%= link_to test.title, test_path(test), style: "font-size:18px" %></li>
 					<% end %>
 				</ul>
 			</div>

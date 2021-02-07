@@ -1,0 +1,12 @@
+<fieldset>
+    <%= f.text_area :body, class:"form-control", placeholder: "Текст вопроса" %> <br>
+    <%= f.check_box :_destroy %>
+    <%= "Удалить вопрос" %>
+    <h3>Ответы</h3>
+    <%= f.fields_for :answers do |builder| %>
+ 	 <%= render 'answer_fields', f: builder %>
+	 <% end %>
+	<%= link_to_add_fields "Добавить ответ", f, :answers %>
+    <%# link_to "Удалить адрес", '#', class: "remove-address" %>
+    <%# <button type="button" class="remove-address">Удалить адрес</button> %>
+</fieldset>

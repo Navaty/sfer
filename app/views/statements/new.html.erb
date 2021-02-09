@@ -1,5 +1,18 @@
 <h1>New Statement</h1>
 
-<%= render 'form', statement: @statement %>
+	<div class="row mt-3 justify-content-center">
+			<div class="col-10 py-2 bg-info text-center text-white">
+			<h3>Поздравляем, Вы успешно прошли данный тест!</h3>
+			<span>Результат <%= @score %> из <%= @total %> </span> <br>
+		</div>
+	</div>
+	<div class="row justify-content-center mb-3">
+		<div class="col-10 py-2 border border-info rounded">
+					<span>Вам открыта возможность заказать подтверждающий документ для Вашего портфолио – сертификат об успешном прохождении теста. Сейчас Вы можете успеть выгодно получить данный документ, воспользовавшись акцией: скидка ~35%, т.е. вместо 300 р., для Вас орг.взнос будет 190 р. Ваш сертификат будет готов в течение 24-х часов с момента внесения орг. взноса</span>
+		</div>
+		<div class="col-10 py-2 border border-info rounded mt-3">
+				<%= render 'form', statement: @statement %>
+		</div>
+	</div>
 
 <%= link_to 'Back', statements_path %>

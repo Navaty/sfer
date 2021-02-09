@@ -1,14 +1,5 @@
 <p id="notice"><%= notice %></p>
 <style type="text/css">
-   A {
-    color: red; /* Цвет ссылок */
-   }
-   A:visited {
-    color: #000000; /* Цвет посещенных ссылок */
-   }
-   A:active {
-    color: #000000; /* Цвет активных ссылок */
-   }
   </style>
 <div class="row d-flex justify-content-center">
 <h1>Супер тесты</h1>
@@ -27,9 +18,9 @@
       </div> 
       
       <div class="col-12 col-md-8">
-        <ul class="list-unstyled">
+        <ul class="list-unstyled tests-list">
           <% category.tests.each do |test| %>
-            <li> <%= image_tag 'logo2.jpg', size: "35x40" %> <%= link_to test.title, test_path(test), style: "font-size:18px" %></li>
+            <li> <%= image_tag 'logo2.jpg', size: "35x40" %> <%= link_to test.title, test_path(test), class: "tests-item", style: "font-size:18px" %></li>
           <% end %>
         </ul>
       </div>

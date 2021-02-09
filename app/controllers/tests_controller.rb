@@ -47,7 +47,7 @@ before_action :set_test, only: [:show, :edit, :update, :destroy]
     end
 
     def test_params
-      params.require(:test).permit(:title, :description, :active, :tcategory_id, :certificate, questions_attributes: 
-        [:body, :_destroy, :id, answers_attributes: [:body, :_destroy, :id, :isCorrect]])
+      params.require(:test).permit(:title, :description, :active, :tcategory_id, :certificate,
+       questions_attributes: [:body, :_destroy, :id, answers_attributes: [:body, :_destroy, :id, :isCorrect]])
     end
 end

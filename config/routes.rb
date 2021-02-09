@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   root 'pages#welcome'
-  resources :statements
+  #resources :statements
+  resources :statements, exept: [:new, :create] do
+  	get 'update_certificate', on: :member
+  end
   
   resources :tests do 
   	resources :surveys
+  	resources :statements, only: [:new, :create ]
   end
 
 

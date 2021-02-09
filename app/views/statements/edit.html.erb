@@ -12,38 +12,38 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, id: :statement_email %>
-  </div>
-
-  <div class="field">
-    <%= form.label :fio, "ФИО" %>
-    <%= form.text_field :fio, id: :statement_fio %>
-  </div>
-
-  <div class="field">
-    <%= form.label :phone, "Телефон" %>
-    <%= form.text_field :phone, id: :statement_phone %>
-  </div>
-
-  <div class="field">
-    <%= form.label :position, "Должность" %>
-    <%= form.text_field :position, id: :statement_position %>
-  </div>
-
-    <div class="field">
-    <%= form.label :place, "Место работы" %>
-    <%= form.text_field :place, id: :statement_place %>
-  </div>
-
-    <div class="field">
+<div class="form-group">
     <%= form.label :name, "Имя" %>
-    <%= form.text_field :name, id: :statement_name %>
+    <%= form.text_field :name, id: :statement_name, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :soname, "Фамилия" %>
+    <%= form.text_field :soname, id: :statement_soname, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :father_name, "Отчество" %>
+    <%= form.text_field :father_name, id: :statement_father_name, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :email %>
+    <%= form.text_field :email, id: :statement_email, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :place, "Место работы" %>
+    <%= form.text_field :place, id: :statement_place, class:"form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :position, "Должность" %>
+    <%= form.text_field :position, id: :statement_position, class:"form-control" %>
   </div>
 
   <div class="field">
-    <%= form.check_box :notify %>
+    <%= form.check_box :notified %>
     Уведомлен
   </div>
     <div class="field">

@@ -1,7 +1,7 @@
 class Test < ApplicationRecord
   belongs_to :tcategory
   has_many :questions, dependent: :destroy
-  #mount_uploader :certificate, CertificateUploader
+  mount_uploader :certificate, CertificateUploader
 
   validates :title, presence: true
 

@@ -6,7 +6,7 @@ class SurveysController < ApplicationController
 
   	def create
 	  	# @survey = Survey.new()
-	    @test_id = params[:test_id]
+	    @test = params[:test_id]
 	    @score = 0
 	    @wrong_questions = Array.new
 	    @wrong_answers = Array.new
@@ -29,7 +29,7 @@ class SurveysController < ApplicationController
 	      render :loser
 	    else
 	      @statement = Statement.new
-	      render :winer
+	      redirect_to new_test_statement_path(@test)
 	    end	
   	end
 end

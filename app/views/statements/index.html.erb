@@ -6,24 +6,32 @@
     <%= form_tag statements_path, :method => 'get', :id => "statements_search", class: "form-group search-form" do %>
         <%# hidden_field_tag :order, params[:order], :id => "place_order_field", class: "sort-field" %>
         <div class="form-row">
-          <div class="col-md-12 mb-2">
+          <div class="col-md-3 mb-2">
                 <%= text_field_tag "search[ticket_id]", (params[:search][:ticket_id] if params[:search].present?), class: "form-control", placeholder: "ID" %>
             </div> 
-            <div class="col-md-6 mb-2">
+            <div class="col-md-3 mb-2">
                 <%= text_field_tag "search[email]", (params[:search][:email] if params[:search].present?), class: "form-control", placeholder: "Email" %>
             </div> 
             <div class="col-md-6 mb-2">
-                <%= text_field_tag "search[fio]", (params[:search][:fio] if params[:search].present?),  class:"form-control", placeholder: "Fio" %>
+                <%= text_field_tag "search[name]", (params[:search][:name] if params[:search].present?),  class:"form-control", placeholder: "Имя" %>
+            </div> 
+
+            <div class="col-md-6 mb-2">
+                <%= text_field_tag "search[soname]", (params[:search][:soname] if params[:search].present?),  class:"form-control", placeholder: "Фамилия" %>
+            </div> 
+
+            <div class="col-md-6 mb-2">
+                <%= text_field_tag "search[father_name]", (params[:search][:father_name] if params[:search].present?),  class:"form-control", placeholder: "Отчество" %>
             </div> 
 
             <div class="col-md-3 mb-2 d-block ">
 
 
-                  <input class="form-control" type="text" name="search[date[start]]" value= "<%= params[:search][:date][:start] if params[:search].present? %>" id="btdate" placeholder="Дата начала" onfocus="(this.type='date');(this.click())" onblur="(this.type='text')"> 
+                  <input class="form-control" type="text" name="search[date[start]]" value= "<%= params[:search][:date][:start] if params[:search].present? %>" id="btdate" placeholder="Заявки от даты" onfocus="(this.type='date');(this.click())" onblur="(this.type='text')"> 
                                 
             </div>
           <div class="col-md-3 mb-2 d-block">
-            <input class="form-control" type="text" name="search[date[end]]" id="btdate" placeholder="Конец даты" onfocus="(this.type='date');(this.click())" onblur="(this.type='text')" value= "<%= params[:search][:date][:end] if params[:search].present? %>"> 
+            <input class="form-control" type="text" name="search[date[end]]" id="btdate" placeholder="Заявки до даты" onfocus="(this.type='date');(this.click())" onblur="(this.type='text')" value= "<%= params[:search][:date][:end] if params[:search].present? %>"> 
            </div>
             <div class="col-md-3 d-block form-check">
                 <span class="form-control">
@@ -44,7 +52,9 @@
     <tr>
       <th scope="col">Отметить</th>
       <th scope="col">Email</th>
-      <th scope="col">ФИО</th>
+      <th scope="col">Имя</th>
+      <th scope="col">Фамилия</th>
+      <th scope="col">Отчество</th>
       <th scope="col">Номер</th>
       <th scope="col">Должность</th>
       <th scope="col">Тест</th>
@@ -58,11 +68,12 @@
       <tr>
         <td><%= check_box_tag "statement_ids[]", statement.id%></td>
         <td><%= statement.email %></td>
-        <td><%= statement.fio %></td>
-        <td><%= statement.phone %></td>
+        <td><%= statement.name %></td>
+        <td><%= statement.soname %></td>
+        <td><%= statement.father_name %></td>
         <td><%= statement.position %></td>
         <td><%= statement.test.title %></td>
-        <td><%= 'Да' if statement.notify %></td>
+        <td><%= 'Да' if statement.notified %></td>
         <td><%= 'Да' if statement.paid %></td>
         <td><%= link_to 'Посмотреть', statement %></td>
         <td><%= link_to 'Редактировать', edit_statement_path(statement) %></td>

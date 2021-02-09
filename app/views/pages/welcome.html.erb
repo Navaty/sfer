@@ -16,7 +16,7 @@
 </div>
 <div class="container mt-3">
 	<% @tcategory.each do |category| %>
-	<br>
+		<hr/>
 		<div class="row">
 			<div class="col-4"> 
 				<div class="row d-flex justify-content-center">
@@ -28,7 +28,7 @@
 			</div> 
 			
 			<div class="col-8">
-				<ul class="list-unstyled">
+				<ul class="list-unstyled tests-list">
 					<% category.tests.each do |test| %>
 						<li> <%= image_tag 'logo2.jpg', size: "35x40" %> <%= link_to test.title, test_path(test), style: "font-size:18px" %></li>
 					<% end %>

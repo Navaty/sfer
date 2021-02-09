@@ -42,6 +42,10 @@
   </div>
 
   <div class="form-group">
+    <%= form.text_field :test_id, :value => @test %>
+  </div>
+
+  <div class="form-group">
     <%= form.submit "Отправить", class:"btn btn-primary" %>
     <%= link_to "Вернуться к списку тестов", tests_path(), class: "btn btn-warning active" %> 
 

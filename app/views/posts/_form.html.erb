@@ -1,4 +1,4 @@
-<%# javascript_include_tag Ckeditor.cdn_url %>
+<%= javascript_include_tag Ckeditor.cdn_url %>
 <%= form_with(model: post, local: true, html: { multipart: true }) do |form| %>
   <% if post.errors.any? %>
     <div id="error_explanation">
@@ -13,7 +13,7 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :title %>
+    <%= form.label :title, "Заголовок" %>
     <%= form.text_field :title, class: "form-control" %>
   </div>
 
@@ -22,22 +22,22 @@
   </div>
 
   <div class="field">
-    <%= form.label :body %>
-    <%= form.cktext_area :body, class: "form-control"%>
+    <%= form.label :body, "Описание" %>
+    <%= form.cktext_area :body, id: :post_body, class: "form-control"%>
   </div>
 
   <div class="field">
-    <%= form.label :m_title %>
+    <%= form.label :m_title, "Meta Title" %>
     <%= form.text_field :m_title, class: "form-control" %>
   </div>
 
   <div class="field">
-    <%= form.label :m_desc %>
+    <%= form.label :m_desc, "Meta Description" %>
     <%= form.text_area :m_desc, class: "form-control" %>
   </div>
 
   <div class="field">
-    <%= form.label :m_keys %>
+    <%= form.label :m_keys, "Ключевые слова" %>
     <%= form.text_area :m_keys, class: "form-control" %>
   </div>
 

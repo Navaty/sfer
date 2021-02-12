@@ -20,4 +20,8 @@ class Statement < ApplicationRecord
 	statemets
   end
 
+  def self.check_statement(id)
+  	statement = Statement.find_by(id: id)
+  end
+
 end

@@ -1,48 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Email:</strong>
-  <%= @statement.email %>
-</p>
+<h2>
+В данном разделе Вы можете скачать свой сертификат по номеру, присвоенному Вашей заявке. Документы изготавливаются в течение 24-х часов после заказа и хранятся 30 дней. Если Ваш сертификат по какой-то причине не доступен для скачивания, напишите нам на info@sferaped.ru
+</h2>
+<%= form_tag statement_path, :method => 'get', :id => "statement_check", class: "form-group check-form" do %>
+  <%= label_tag "Пожалуйста, введите номер, присвоенный Вашей заявке" %> 
+  <%= number_field_tag :id %>
+<% end %>
 
-<p>
-  <strong>Имя:</strong>
-  <%= @statement.name %>
-</p>
 
-<p>
-  <strong>Имя:</strong>
-  <%= @statement.soname %>
-</p>
 
-<p>
-  <strong>Имя:</strong>
-  <%= @statement.father_name %>
-</p>
-
-<p>
-  <strong>Position:</strong>
-  <%= @statement.position %>
-</p>
-
-<p>
-  <strong>Test:</strong>
-  <%= @statement.test %>
-</p>
-
-<% if @statement.certificate? %>
-
-<p>
-    ЕСТЬ СЕРТИФИКАТ <%= link_to "СКАЧАТЬ", @statement.certificate.url, target: "_blank" %>
-</p>
- <% else %>
-
- <p>
-  NOOOOOOOOOOOOO
- </p>
-
- <% end %>
-
-<%= link_to 'Edit', edit_statement_path(@statement) %> |
-<%= link_to 'Back', statements_path %> |
-<%= link_to 'Обновить сертификат', update_certificate_statement_path(@statement) %>
+<%# link_to 'Edit', edit_statement_path(@statement) %> |
+<%#= link_to 'Back', statements_path %> |
+<%#= link_to 'Обновить сертификат', update_certificate_statement_path(@statement) %>

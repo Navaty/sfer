@@ -1,89 +1,39 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Заявки</h1>
-
-<div class="container search">
-    <%= form_tag statements_path, :method => 'get', :id => "statements_search", class: "form-group search-form" do %>
-        <%# hidden_field_tag :order, params[:order], :id => "place_order_field", class: "sort-field" %>
-        <div class="form-row">
-          <div class="col-md-3 mb-2">
-                <%= text_field_tag "search[ticket_id]", (params[:search][:ticket_id] if params[:search].present?), class: "form-control", placeholder: "ID" %>
-            </div> 
-            <div class="col-md-3 mb-2">
-                <%= text_field_tag "search[email]", (params[:search][:email] if params[:search].present?), class: "form-control", placeholder: "Email" %>
-            </div> 
-            <div class="col-md-6 mb-2">
-                <%= text_field_tag "search[name]", (params[:search][:name] if params[:search].present?),  class:"form-control", placeholder: "Имя" %>
-            </div> 
-
-            <div class="col-md-6 mb-2">
-                <%= text_field_tag "search[soname]", (params[:search][:soname] if params[:search].present?),  class:"form-control", placeholder: "Фамилия" %>
-            </div> 
-
-            <div class="col-md-6 mb-2">
-                <%= text_field_tag "search[father_name]", (params[:search][:father_name] if params[:search].present?),  class:"form-control", placeholder: "Отчество" %>
-            </div> 
-
-            <div class="col-md-3 mb-2 d-block ">
-
-
-                  <input class="form-control" type="text" name="search[date[start]]" value= "<%= params[:search][:date][:start] if params[:search].present? %>" id="btdate" placeholder="Заявки от даты" onfocus="(this.type='date');(this.click())" onblur="(this.type='text')"> 
-                                
-            </div>
-          <div class="col-md-3 mb-2 d-block">
-            <input class="form-control" type="text" name="search[date[end]]" id="btdate" placeholder="Заявки до даты" onfocus="(this.type='date');(this.click())" onblur="(this.type='text')" value= "<%= params[:search][:date][:end] if params[:search].present? %>"> 
-           </div>
-            <div class="col-md-3 d-block form-check">
-                <span class="form-control">
-                <%= check_box_tag "search[paid]", true, (params[:search][:paid] if params[:search].present?), class: " form-check-input ", style: "margin-left: 5px" %>
-                <%= label_tag :paid, 'Оплаченные', class: "form-check-label", style: "margin-left: 25px" %>
-                </span>
-            </div>
-            <div class="col-md-3 d-block"> <%= submit_tag "Найти", class:"form-control btn-primary" %></div>
-          </div>
-      <% end %>
+<div class="row justify-content-center">
+	<div class="col-9">
+		<h4 class="text-center"> 
+			В данном разделе Вы можете скачать свой сертификат по номеру, присвоенному Вашей заявке. Документы изготавливаются в течение 24-х часов после заказа и хранятся 30 дней. Если Ваш сертификат по какой-то причине не доступен для скачивания, напишите нам на info@sferaped.ru
+		</h4> <!--Тестирование для педагогов, учителей, воспитателей, психологов, логопедов, дефектологов, методистов и других представителей сферы образования -->
+	</div>
 </div>
-<%= form_tag statements_path do %>
-<div class="col-md-3">
-<%= submit_tag "Отправить уведомление", class: "form-control btn-info" %>
-</div> <br>
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Отметить</th>
-      <th scope="col">Email</th>
-      <th scope="col">Имя</th>
-      <th scope="col">Фамилия</th>
-      <th scope="col">Отчество</th>
-      <th scope="col">Номер</th>
-      <th scope="col">Должность</th>
-      <th scope="col">Тест</th>
-      <th scope="col">Уведомлен</th>
-      <th scope="col">Оплачен</th>
-      <th colspan="3">Действия</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @statements.each do |statement| %>
-      <tr>
-        <td><%= check_box_tag "statement_ids[]", statement.id%></td>
-        <td><%= statement.email %></td>
-        <td><%= statement.name %></td>
-        <td><%= statement.soname %></td>
-        <td><%= statement.father_name %></td>
-        <td><%= statement.position %></td>
-        <td><%= statement.test.title %></td>
-        <td><%= 'Да' if statement.notified %></td>
-        <td><%= 'Да' if statement.paid %></td>
-        <td><%= link_to 'Посмотреть', statement %></td>
-        <td><%= link_to 'Редактировать', edit_statement_path(statement) %></td>
-        <td><%= link_to 'Удалить', statement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
- 
- <% end %>
-<%= link_to 'New Statement', new_statement_path %>
+<div class="row justify-content-center">
+	<div class="col-6 border text-center mt-4 p-5">
+		<%= form_tag statements_path, :method => 'get', :id => "statement_check", class: "form-group check-form" do %>
+				<span><b>Пожалуйста, введите номер, присвоенный Вашей заявке</b></span>
+				<div class="form-group mt-3">
+					<%= number_field_tag :check_id, params[:check_id], class: "form-control" %>
+				</div>
+				<div class="form-group">
+					<%= submit_tag "Проверить", class: "btn btn-primary" %>
+				</div>
+		<% end %>
+	</div>
+</div>
+<div class="row justify-content-center">
+	<div class="col-6 border text-center mt-4 p-5">
+		<% if @statement %>
+			<% if @statement.paid? %>
+						<p>Фамилия: <%= @statement.soname%></p>
+						<p>Имя: <%= @statement.name%></p>
+						<p>Отчество: <%= @statement.father_name%></p>
+						<p>Тест: <%= @statement.test.title%></p>
+						<p>Сертификат: <%= @statement.certificate? ? link_to("Скачать", @statement.certificate.url, target: "_blank") : "Истек срок хранения сертификата. Если Вам необходимо его получить вновь, напишите нам на info@sferaped.ru" %></p>
+			<% else %>
+				<span><b>Если Вы уже сделали заказ, то Ваш сертификат на изготовлении, пожалуйста, ждите. Если Вы еще не заказали документ, перейдите по ссылке: https://sferaped.ru/zakaz/</b></span>
+			<% end %>
+		<% else %>
+			<span><b>Сертификат не найден, пожалуйста, проверьте правильность введенного Вами номера.</b></span>
+		<% end %>
+	</div>
+</div>

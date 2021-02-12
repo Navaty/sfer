@@ -6,7 +6,7 @@
   	image_tag @post.image_url, class: "offers_elem"
   end %>
   <div class="postbody">
-  <%= raw @post.body %>
+  <%= sanitize @post.body %>
   </div>
 <p>
   <strong>Mtitle:</strong>

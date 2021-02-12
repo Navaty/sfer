@@ -37,8 +37,8 @@
 	</div>
 	<% end %>
 	<div class="text-center">
-		<%= link_to "Пройти тест заного", new_test_survey_url(test_id: @test_id), class: "btn btn-primary active" %> 
-		<%= link_to "Вернуться к списку тестов", new_test_survey_url(test_id: @test_id), class: "btn btn-warning active" %> 
+		<%= link_to "Пройти тест заного", new_test_survey_url(test_id: @test), class: "btn btn-primary active" %> 
+		<%= link_to "Вернуться к списку тестов", tests_path(test_id: @test), class: "btn btn-warning active" %> 
 	</div>
 
 

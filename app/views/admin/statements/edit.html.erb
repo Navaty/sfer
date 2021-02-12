@@ -1,17 +1,18 @@
-<%= form_with(model: [:test, statement], local: true) do |form| %>
-  <% if statement.errors.any? %>
+<h1>Editing Statement</h1>
+<%= form_for(@statement, local: true) do |form| %>
+  <% if @statement.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(statement.errors.count, "error") %> prohibited this statement from being saved:</h2>
+      <h2><%= pluralize(@statement.errors.count, "error") %> prohibited this statement from being saved:</h2>
 
       <ul>
-      <% statement.errors.full_messages.each do |message| %>
+      <% @statement.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="form-group">
+<div class="form-group">
     <%= form.label :name, "Имя" %>
     <%= form.text_field :name, id: :statement_name, class:"form-control" %>
   </div>
@@ -41,13 +42,19 @@
     <%= form.text_field :position, id: :statement_position, class:"form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= form.text_field :test_id, :value => @test %>
+  <div class="field">
+    <%= form.check_box :notified %>
+    Уведомлен
+  </div>
+    <div class="field">
+    <%= form.check_box :paid %>
+    Оплачен
   </div>
 
-  <div class="form-group">
-    <%= form.submit "Отправить", class:"btn btn-primary" %>
-    <%= link_to "Вернуться к списку тестов", tests_path(), class: "btn btn-warning active" %> 
 
+  <div class="actions">
+    <%= form.submit %>
   </div>
 <% end %>
+<%= link_to 'Show', @statement %> |
+<%= link_to 'Back', admin_statements_path %>

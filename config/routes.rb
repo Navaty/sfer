@@ -1,13 +1,18 @@
 Rails.application.routes.draw do
+  mount Ckeditor::Engine => '/ckeditor'
   root 'pages#welcome'
-  #resources :statements
-  resources :statements, exept: [:new, :create] do
-  	get 'update_certificate', on: :member
+
+  resources :statements, only: [:show, :index]
+
+  namespace :admin do
+    resources :statements, exept: [:new, :create] do
+    	get 'update_certificate', on: :member
+    end
   end
   
   resources :tests do 
   	resources :surveys
-  	resources :statements, only: [:new, :create ]
+  	resources :statements, only: [:new, :create]
   end
 
 
